@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-
+var t = 'trilok';
   final count = 0.obs;
   @override
   void onInit() {

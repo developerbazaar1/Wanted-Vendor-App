@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:wanted/utils/color.dart';
+import 'package:wanted/utils/myText.dart';
 import 'package:wanted/utils/textStyle.dart';
 import 'package:wanted/widgets/customButton.dart';
 import 'package:wanted/widgets/customTextfield.dart';
@@ -55,15 +56,9 @@ class SignUpView extends GetView<SignUpController> {
                                           width: width * 0.3,
                                         ),
                                         SizedBox(height: height * 0.03),
-                                        Text(
-                                            'Unlock Coupon Deals:\nPartner with Us!',
-                                            style: loginHeadingStyle,
-                                            textAlign: TextAlign.center),
+                                        const MyTextQuickSand(text: 'Unlock Coupon Deals:\nPartner with Us!',textAlign: TextAlign.center),
                                         SizedBox(height: height * 0.007),
-                                        Text(
-                                            'Start Earning: Exclusive Vendor Benefits Await You!',
-                                            style: loginHeadingStyle2,
-                                            textAlign: TextAlign.center),
+                                        MyTextQuickSand(text: 'Start Earning: Exclusive Vendor Benefits Await You!',fontSize: width*0.035,),
                                         SizedBox(height: height * 0.02),
                                         customTextField(
                                             'assets/images/Avatar.svg',
@@ -94,10 +89,7 @@ class SignUpView extends GetView<SignUpController> {
                                                   onChanged: (onChanged) {}),
                                             ),
                                             SizedBox(width: width * 0.025),
-                                            Text(
-                                              'Agree to Terms & Privacy to Create Account.',
-                                              style: latoStyle,
-                                            )
+                                            MyTextLato(text: "Agree to Terms & Privacy to Create Account.")
                                           ],
                                         ),
                                         SizedBox(height: height * 0.02),
@@ -112,23 +104,15 @@ class SignUpView extends GetView<SignUpController> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              'Already have an account?  ',
-                                              style: latoStyleBottomText,
-                                            ),
+                                            MyTextLato(text: 'Already have an account?  ',fontSize: width*0.035,),
+
                                             InkWell(
                                               onTap: () {
                                                 Get.toNamed('login');
                                               },
-                                              child: Text(
-                                                'Log in',
-                                                style: latoStyleBottomTextGreen,
-                                              ),
+                                              child: MyTextLato(text: "Login",fontSize: width*0.035,color: appColor,)
                                             ),
-                                            Text(
-                                              '  here.',
-                                              style: latoStyleBottomText,
-                                            ),
+                                           MyTextLato(text: '  here',fontSize: width*0.035,)
                                           ],
                                         )
                                       ]),

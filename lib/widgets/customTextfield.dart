@@ -7,7 +7,6 @@ Widget customTextField(String img, String hint,var width, var height) {
         contentPadding: const EdgeInsets.only(top: 0),
         fillColor: Colors.white,
         filled: true,
-
         prefixIcon: IconButton(
           icon: SvgPicture.asset(
             img,
@@ -15,8 +14,6 @@ Widget customTextField(String img, String hint,var width, var height) {
           ),
           onPressed: () {},
         ),
-        // prefixStyle: const TextStyle(fontSize: 1),
-        //prefixIcon: SvgPicture.asset('assets/images/Mail.svg',width: 0,),
         hintText: hint,
         hintStyle: TextStyle(fontSize: width*0.03),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(6))),

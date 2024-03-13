@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:wanted/utils/color.dart';
+import 'package:wanted/utils/myText.dart';
 
 import '../utils/textStyle.dart';
 
@@ -11,9 +12,6 @@ height: height * 0.05,
     decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(width*0.01), color: appColor),
       child: Center(
-          child: Text(
-        text,
-        style: buttonTextStyle,
-      )));
+          child: MyTextQuickSand(text: text,)));
 
 }
