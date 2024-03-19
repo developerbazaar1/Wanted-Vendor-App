@@ -44,12 +44,19 @@ class HomeView extends GetView<HomeController> {
                   onTap: (){
                     Get.toNamed('/advert-show-case');
                   },
-                  child: costumeTile('assets/images/advertShowcaseIcon.svg',"Advert Showcase","A Space for Your Ad Campaigns")),
-              costumeTile('assets/images/providerPotfolioIcon.svg',"Provider Portfolio","Showcase Your Provider Identity"),
-              costumeTile('assets/images/Customer InquiriesIcon.svg',"Customer Inquiries","Stay Updated On Customer Queries"),
-              costumeTile('assets/images/RewardsHubIcon.svg',"Rewards Hub","Monitor Customer Loyalty Rewards"),
-              costumeTile('assets/images/PaymentHistoryIcon.svg',"Payment History","Keep Tabs on Your Payments"),
-              costumeTile('assets/images/AccountCustomizationIcon.svg',"Account Customization","Fine-Tune Your Vendor Account"),
+                  child: costumeTile('assets/images/advertShowcaseIcon.svg',"Advert Showcase","A Space for Your Ad Campaigns",width,height)),
+              InkWell(
+
+                  onTap: (){
+                    Get.toNamed('/provider-portfolio');
+                  },
+
+                  child: costumeTile('assets/images/providerPotfolioIcon.svg',"Provider Portfolio","Showcase Your Provider Identity",width,height)),
+              costumeTile('assets/images/Customer InquiriesIcon.svg',"Customer Inquiries","Stay Updated On Customer Queries",width,height),
+              costumeTile('assets/images/RewardsHubIcon.svg',"Rewards Hub","Monitor Customer Loyalty Rewards",width,height),
+              costumeTile('assets/images/PaymentHistoryIcon.svg',"Payment History","Keep Tabs on Your Payments",width,height
+              ),
+              costumeTile('assets/images/AccountCustomizationIcon.svg',"Account Customization","Fine-Tune Your Vendor Account",width,height),
 
             ],
           ),
@@ -58,7 +65,7 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget costumeTile(String img , String title,String subTitle) {
+  Widget costumeTile(String img , String title,String subTitle,var width, var height) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
       child: Container(

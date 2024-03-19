@@ -8,7 +8,7 @@ import '../controllers/splash_screen_controller.dart';
 class SplashScreenView extends GetView<SplashScreenController> {
   @override
   Widget build(BuildContext context) {
-    SizeUtils.instance.init(context); // Initialize SizeUtils with context
+    // SizeUtils.instance.init(context); // Initialize SizeUtils with context
 
     // Delay for 2 seconds and then navigate to the main screen
     Future.delayed(const Duration(seconds: 3), () {

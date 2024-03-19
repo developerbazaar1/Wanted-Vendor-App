@@ -85,8 +85,8 @@ class LoginView extends GetView<LoginController> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Container(
-                                          height: 17,
-                                          width: 17,
+                                          height: width*0.05,
+                                          width: width*0.05,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(3),
@@ -105,7 +105,7 @@ class LoginView extends GetView<LoginController> {
                                     SizedBox(height: height * 0.02),
                                     InkWell(
                                         onTap: () {
-                                          Get.toNamed('/sign-up');
+                                          Get.toNamed('/bottombar');
                                         },
                                         child: customeButton(
                                             width, height, 'LOGIN')),

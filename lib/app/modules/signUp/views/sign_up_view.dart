@@ -77,8 +77,8 @@ class SignUpView extends GetView<SignUpController> {
                                               MainAxisAlignment.center,
                                           children: [
                                             Container(
-                                              height: 20,
-                                              width: 20,
+                                              height: width*0.05,
+                                              width: width*0.05,
                                               decoration: BoxDecoration(
                                                   border: Border.all(
                                                       color: Colors.white)),
