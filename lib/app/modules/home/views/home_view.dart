@@ -41,23 +41,63 @@ class HomeView extends GetView<HomeController> {
                     fontWeight: FontWeight.w500),
               ),
               InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed('/advert-show-case');
                   },
-                  child: costumeTile('assets/images/advertShowcaseIcon.svg',"Advert Showcase","A Space for Your Ad Campaigns",width,height)),
+                  child: costumeTile(
+                      'assets/images/advertShowcaseIcon.svg',
+                      "Advert Showcase",
+                      "A Space for Your Ad Campaigns",
+                      width,
+                      height)),
               InkWell(
-
-                  onTap: (){
+                  onTap: () {
                     Get.toNamed('/provider-portfolio');
                   },
+                  child: costumeTile(
+                      'assets/images/providerPotfolioIcon.svg',
+                      "Provider Portfolio",
+                      "Showcase Your Provider Identity",
+                      width,
+                      height)),
 
-                  child: costumeTile('assets/images/providerPotfolioIcon.svg',"Provider Portfolio","Showcase Your Provider Identity",width,height)),
-              costumeTile('assets/images/Customer InquiriesIcon.svg',"Customer Inquiries","Stay Updated On Customer Queries",width,height),
-              costumeTile('assets/images/RewardsHubIcon.svg',"Rewards Hub","Monitor Customer Loyalty Rewards",width,height),
-              costumeTile('assets/images/PaymentHistoryIcon.svg',"Payment History","Keep Tabs on Your Payments",width,height
+              InkWell(
+                onTap: () {
+                  Get.toNamed('/customer-inquiries');
+                },
+                child: costumeTile(
+                    'assets/images/Customer InquiriesIcon.svg',
+                    "Customer Inquiries",
+                    "Stay Updated On Customer Queries",
+                    width,
+                    height),
               ),
-              costumeTile('assets/images/AccountCustomizationIcon.svg',"Account Customization","Fine-Tune Your Vendor Account",width,height),
+              InkWell(
+                onTap: () {
+                  Get.toNamed('/rewards-hub');
+                },
+                child: costumeTile('assets/images/RewardsHubIcon.svg', "Rewards Hub",
+                    "Monitor Customer Loyalty Rewards", width, height),
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed('/payments',arguments: true);
+                },
+                child: costumeTile(
+                    'assets/images/PaymentHistoryIcon.svg',
+                    "Payment History",
+                    "Keep Tabs on Your Payments",
+                    width,
+                    height),
+              ),
+              costumeTile(
+                  'assets/images/AccountCustomizationIcon.svg',
+                  "Account Customization",
+                  "Fine-Tune Your Vendor Account",
+                  width,
+                  height),
 
+              SizedBox(height: height*0.05,)
             ],
           ),
         ),
@@ -65,7 +105,8 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget costumeTile(String img , String title,String subTitle,var width, var height) {
+  Widget costumeTile(
+      String img, String title, String subTitle, var width, var height) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
       child: Container(

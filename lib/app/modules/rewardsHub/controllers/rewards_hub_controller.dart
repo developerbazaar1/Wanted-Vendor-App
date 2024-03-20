@@ -1,28 +1,32 @@
 import 'package:get/get.dart';
 
-class PaymentsController extends GetxController {
-  //TODO: Implement PaymentsController
+class RewardsHubController extends GetxController {
+  //TODO: Implement RewardsHubController
   final List<List<dynamic>> dynamicData = [
     [
       '01',
       '12/09/2023',
-      'Beauty & Spa',
-      '\$ 39.99',
-      'Received',
+      'Trilok',
+      'Free Hair Cut',
+      '5 Points',
+      '2 Rewards'
     ],
     [
       '01',
       '12/09/2023',
-      'Beauty & Spa',
-      '\$ 9.99',
-      'Canceled',
+      'Aman',
+      'Free Hair Cut',
+      '9 Points',
+      '1 Rewards'
     ],
+
     [
       '01',
       '12/09/2023',
-      'Beauty & Spa',
-      '\$ 9.99',
-      'Received',
+      'Pankaj',
+      'Free Hair Cut',
+      '15 Points',
+      '5 Rewards'
     ],
 
 

@@ -79,7 +79,7 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.toNamed('/add-advert');
+                    Get.toNamed('/add-advert',arguments: true);
                   },
                   child: Container(
                     width: width * 0.6,
@@ -147,10 +147,9 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
     );
   }
 
-  void _handleDropdownItemClick(String selectedItem,BuildContext context) async {
+  void _handleDropdownItemClick(String selectedItem,BuildContext context,var width) async {
     if (selectedItem == 'Preview') {
       Get.toNamed('/advert-preview');
-
       print('Selected fruit is Preview');
     } else if (selectedItem == 'Post Again') {
       Get.toNamed('/post-again-advert');
@@ -161,14 +160,41 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
     } else if (selectedItem == 'Delete') {
       showDialog(context: context, builder: (context) {
         return AlertDialog(
-          title: Text('dfsdfsd'),
+          shape: Border.symmetric(),
+          actionsAlignment: MainAxisAlignment.center,
+          title: MyTextQuickSand(text: 'Do You Want To Delete It?',color: Colors.black,fontSize: width*0.05,fontWeight: FontWeight.w500,),
+          actions: [
+
+            Container(
+              width: width*0.15,
+              height: width*0.07,
+              decoration: BoxDecoration(
+                color: appColor
+              ),
+              child: Center(child: MyTextQuickSand(text: 'Yes',color: Colors.black,fontSize: width*0.045,fontWeight: FontWeight.w500,)),
+            ),
+            SizedBox(width: width*0.025,),
+            InkWell(
+              onTap: (){
+                Get.back();
+              },
+              child: Container(
+                width: width*0.15,
+                height: width*0.07,
+                decoration: BoxDecoration(
+                  border: Border.all()
+                ),
+                child: Center(child: MyTextQuickSand(text: 'No',color: Colors.black,fontSize: width*0.045,fontWeight: FontWeight.w500,)),
+              ),
+            )
+
+
+          ],
           
         );
       }
 
       ,);
-
-      print('Selected fruit is Delete');
     }
   }
 
@@ -183,99 +209,90 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
             color:
                 isHeader ? appColor2 : (colors != null ? colors[index] : null),
             child: SizedBox(
-              width: width * 0.32,
+              width: width * 0.28,
               child: isHeader
-                  ? Text(
-                      cells[index],
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
+                  ? MyTextQuickSand(text: cells[index],color: Colors.black,fontSize: width*0.034,fontWeight: FontWeight.bold,maxLines: 1,)
                   : index == cells.length - 2 // Index of 'Manage Advert'
-                      ? Stack(
-                        children: [
+                      ? Padding(
+                padding:  EdgeInsets.only(top: width*0.022),
+                        child: DropdownButtonHideUnderline(
+                            child: DropdownButton<String>(
+                              icon: Icon(Icons.keyboard_arrow_down_outlined,size: width*0.053,),
+                        hint: MyTextQuickSand(text: 'Manage Advert',color: Colors.black,fontSize: width*0.03,fontWeight: FontWeight.w600,),
+                              isExpanded: false,
+                              value: null,
+                              // You can set the default value to null
+                              items: controller.valueIconMap.entries
+                                  .map((MapEntry<String, IconData> entry) {
+                                return DropdownMenuItem<String>(
+                                  value: entry.key,
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        entry.value,
+                                        size: width * 0.04,
+                                        color: entry.key == 'Delete'
+                                            ? Colors.red
+                                            : Colors.black,
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.01,
+                                      ),
+                                      MyTextQuickSand(
+                                        text: entry.key,
+                                        fontSize: width * 0.03,
+                                        color: entry.key == 'Delete'
+                                            ? Colors.red
+                                            : Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }).toList(),
 
-                          Positioned(
-                              top: width*0.044,
-                              left: 0,
-                              child: MyTextQuickSand(text: 'Manage Advert',color: Colors.black,fontSize: width*0.027,fontWeight: FontWeight.w600,)),
-                          DropdownButtonHideUnderline(
-                              child: DropdownButton<String>(
-                                isExpanded: false,
-                                value: null,
-                                // You can set the default value to null
-                                items: controller.valueIconMap.entries
-                                    .map((MapEntry<String, IconData> entry) {
-                                  return DropdownMenuItem<String>(
-                                    value: entry.key,
-                                    alignment: Alignment.center,
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          entry.value,
-                                          size: width * 0.04,
-                                          color: entry.key == 'Delete'
-                                              ? Colors.red
-                                              : Colors.black,
-                                        ),
-                                        SizedBox(
-                                          width: width * 0.01,
-                                        ),
-                                        MyTextQuickSand(
-                                          text: entry.key,
-                                          fontSize: width * 0.03,
-                                          color: entry.key == 'Delete'
-                                              ? Colors.red
-                                              : Colors.black,
-                                          fontWeight: FontWeight.w500,
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }).toList(),
+                              onChanged: (String? newValue) {
+                                print(
+                                    '///////////////////////////////////////////');
+                                _handleDropdownItemClick(newValue!,context,width);
 
-                                onChanged: (String? newValue) {
-                                  print(
-                                      '///////////////////////////////////////////');
-                                  _handleDropdownItemClick(newValue!,context);
-
-                                  print(newValue);
-                                  // Handle dropdown value change
-                                },
-                              ),
+                                print(newValue);
+                                // Handle dropdown value change
+                              },
                             ),
-                        ],
+                          ),
                       )
                       : index == cells.length - 1 // Index of 'Show/Hide Ads'
-                          ? Switch(
-                              activeColor: appColor,
-                              activeTrackColor: Colors.green.shade200,
-                              inactiveThumbColor: Colors.black,
-                              inactiveTrackColor: Colors.grey.shade400,
-                              value: cells[index] == 'true',
-                              onChanged: (value) {})
+                          ? Padding(
+                padding:  EdgeInsets.only(top: width*0.05),
+                            child: Switch(
+                                activeColor: appColor,
+                                activeTrackColor: Colors.green.shade200,
+                                inactiveThumbColor: Colors.black,
+                                inactiveTrackColor: Colors.grey.shade400,
+                                value: cells[index] == 'true',
+                                onChanged: (value) {}),
+                          )
                           : index == cells.length - 3
-                              ? Container(
-                                  decoration: BoxDecoration(
-                                      color: cells[index] == 'Active'
-                                          ? appColor
-                                          : Colors.red,
-                                      borderRadius:
-                                          BorderRadius.circular(width * 0.01)),
-                                  margin: EdgeInsets.only(right: width * 0.07),
-                                  height: height * 0.04,
-                                  child: Center(child: Text(cells[index])),
-                                )
-                              : Text(
-                                  cells[index],
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 4,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.normal,
+                              ? Padding(
+                padding:  EdgeInsets.only(top: width*0.05),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: cells[index] == 'Active'
+                                            ? appColor
+                                            : Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(width * 0.01)),
+                                    margin: EdgeInsets.only(right: width * 0.07),
+                                    height: height * 0.04,
+                                    child: Center(child: MyTextQuickSand(text: cells[index],color: Colors.black,fontSize: width*0.034,fontWeight: FontWeight.w500,maxLines: 4,)),
                                   ),
-                                ),
+                              )
+                              : Padding(
+                padding:  EdgeInsets.only(top: width*0.05),
+                                child: MyTextQuickSand(text: cells[index],color: Colors.black,fontSize: width*0.032,fontWeight: FontWeight.w500,maxLines: 4,),
+                              )
             ),
           ),
         ),

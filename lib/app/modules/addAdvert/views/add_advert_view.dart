@@ -15,9 +15,15 @@ import '../controllers/add_advert_controller.dart';
 class AddAdvertView extends GetView<AddAdvertController> {
   TextEditingController c = TextEditingController();
   final TextEditingController _controller = TextEditingController();
+  var argu = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    if (argu == null) {
+      argu = false;
+    }
+
+    print(argu);
     var width = MediaQuery.sizeOf(context).width;
     var height = MediaQuery.sizeOf(context).height;
     return Scaffold(
@@ -29,8 +35,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
           padding: EdgeInsets.symmetric(
               vertical: height * 0.02, horizontal: width * 0.03),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -41,14 +46,19 @@ class AddAdvertView extends GetView<AddAdvertController> {
                         Get.back();
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(top: width * 0.02),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          size: width * 0.06,
-                        ),
+                        padding: EdgeInsets.only(
+                            top: width * 0.02, left: width * 0.03),
+                        child: argu
+                            ? Icon(
+                                Icons.arrow_back_ios,
+                                size: width * 0.06,
+                              )
+                            : SizedBox(
+                                width: width * 0.05,
+                              ),
                       )),
                   SizedBox(
-                    width: width * 0.16,
+                    width: width * 0.15,
                   ),
                   MyTextQuickSand(
                     text: 'Add New Advert',
@@ -103,7 +113,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                                     MyTextLato(
                                       text: 'Live Ads',
                                       color: Colors.black,
-                                      fontSize: width * 0.04,
+                                      fontSize: width * 0.035,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ],
@@ -122,7 +132,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                                     MyTextLato(
                                       text: 'Latest Offer',
                                       color: Colors.black,
-                                      fontSize: width * 0.04,
+                                      fontSize: width * 0.035,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ],
@@ -141,7 +151,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                                     MyTextLato(
                                       text: 'Services',
                                       color: Colors.black,
-                                      fontSize: width * 0.04,
+                                      fontSize: width * 0.035,
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ],
@@ -328,13 +338,20 @@ class AddAdvertView extends GetView<AddAdvertController> {
                 height: width * 0.025,
               ),
               Obx(() => controller.selectedOptionForProduct.value
-                  ? customeDropDown(width, height,'How Many Product do you have',controller.dropdownItems,'Select Number Of Products:', (newValue) {
-                // Pass the function to setValue parameter
-                // This is the function you want to call when the dropdown value changes
-                controller.setNumberOfProduct(newValue.toString());
-                print('Selected value: $newValue');
-                // You can call any function here based on your requirement
-              },)
+                  ? customeDropDown(
+                      width,
+                      height,
+                      'How Many Product do you have',
+                      controller.dropdownItems,
+                      'Select Number Of Products:',
+                      (newValue) {
+                        // Pass the function to setValue parameter
+                        // This is the function you want to call when the dropdown value changes
+                        controller.setNumberOfProduct(newValue.toString());
+                        print('Selected value: $newValue');
+                        // You can call any function here based on your requirement
+                      },
+                    )
                   : const SizedBox()),
               SizedBox(
                 height: width * 0.025,
@@ -425,7 +442,10 @@ class AddAdvertView extends GetView<AddAdvertController> {
 
                                             controller.isSelectedPlanIndex
                                                 .value = index;
-                                            controller.selectedPlanButton.value = controller.planList[index].planName;
+                                            controller
+                                                    .selectedPlanButton.value =
+                                                controller
+                                                    .planList[index].planName;
                                           },
                                           child: Container(
                                             padding:
@@ -546,7 +566,8 @@ class AddAdvertView extends GetView<AddAdvertController> {
                                                 Container(
                                                   padding: EdgeInsets.all(
                                                       width * 0.01),
-                                                  margin: const EdgeInsets.symmetric(
+                                                  margin: const EdgeInsets
+                                                      .symmetric(
                                                       horizontal: 15),
                                                   decoration: BoxDecoration(
                                                       borderRadius:
@@ -588,28 +609,38 @@ class AddAdvertView extends GetView<AddAdvertController> {
                   ),
 
                   InkWell(
-                    onTap: (){
-                      controller.isSelectedPlanIndex.value = 0;
-                      controller.selectedPlanButton.value = controller.planList[controller.isSelectedPlanIndex.value].planName;
-                    },
-                    child: Obx(() => Container(
-                      padding: EdgeInsets.all(width*0.015),
-                      decoration: BoxDecoration(
-                          color: appColor
-                      ),
-                      child: MyTextQuickSand(text: controller.isSelectedPlanIndex == -1?"Select Plan":'You have Selected ${controller.selectedPlanButton.value}',color: Colors.black,fontSize: width*0.05,fontWeight: FontWeight.w600,),
-                    ),)
-                  ),
+                      onTap: () {
+                        controller.isSelectedPlanIndex.value = 0;
+                        controller.selectedPlanButton.value = controller
+                            .planList[controller.isSelectedPlanIndex.value]
+                            .planName;
+                      },
+                      child: Obx(
+                        () => Container(
+                          padding: EdgeInsets.all(width * 0.015),
+                          decoration: BoxDecoration(color: appColor),
+                          child: MyTextQuickSand(
+                            text: controller.isSelectedPlanIndex == -1
+                                ? "Select Plan"
+                                : 'You have Selected ${controller.selectedPlanButton.value}',
+                            color: Colors.black,
+                            fontSize: width * 0.05,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      )),
                   SizedBox(height: width * 0.025),
-
                   Container(
-
-
-                    padding: EdgeInsets.all(width*0.015),
-                    decoration: BoxDecoration(
-                        color: appColor
+                    padding: EdgeInsets.all(width * 0.015),
+                    decoration: BoxDecoration(color: appColor),
+                    child: MyTextQuickSand(
+                      text: 'Submit',
+                      color: Colors.black,
+                      fontSize: width * 0.05,
+                      fontWeight: FontWeight.w600,
                     ),
-                    child: MyTextQuickSand(text: 'Submit',color: Colors.black,fontSize: width*0.05,fontWeight: FontWeight.w600,),)
+                  ),
+                  SizedBox(height: width * 0.1),
 
                   // SizedBox(
                   //   height: width * 0.02,
@@ -647,7 +678,6 @@ class AddAdvertView extends GetView<AddAdvertController> {
     );
   }
 
-
   Widget addProductForm(var width, var height) {
     return Container(
       padding: EdgeInsets.all(width * 0.05),
@@ -683,21 +713,42 @@ class AddAdvertView extends GetView<AddAdvertController> {
           SizedBox(
             height: width * 0.025,
           ),
-          customeDropDown(width, height,'Product Category',controller.categoryItems,'Select Products Category:', (newValue) {
-            print('Selected value: $newValue');
-          },),
+          customeDropDown(
+            width,
+            height,
+            'Product Category',
+            controller.categoryItems,
+            'Select Products Category:',
+            (newValue) {
+              print('Selected value: $newValue');
+            },
+          ),
           SizedBox(
             height: width * 0.025,
           ),
-          customeDropDown(width, height,'Product Sub Category',controller.subCategoryItems,'Select Products Sub Category:', (newValue) {
-            print('Selected value: $newValue');
-          },),
+          customeDropDown(
+            width,
+            height,
+            'Product Sub Category',
+            controller.subCategoryItems,
+            'Select Products Sub Category:',
+            (newValue) {
+              print('Selected value: $newValue');
+            },
+          ),
           SizedBox(
             height: width * 0.025,
           ),
-          customeDropDown(width, height,'Sub-Sub Category',controller.subSubCategoryItems,'Select Sub-Sub Category:', (newValue) {
-            print('Selected value: $newValue');
-          },),
+          customeDropDown(
+            width,
+            height,
+            'Sub-Sub Category',
+            controller.subSubCategoryItems,
+            'Select Sub-Sub Category:',
+            (newValue) {
+              print('Selected value: $newValue');
+            },
+          ),
           SizedBox(
             height: width * 0.025,
           ),

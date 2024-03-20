@@ -16,105 +16,107 @@ class BottombarView extends GetView<BottombarController> {
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
 
-    return Scaffold(
-      body: Obx(
-        () => _getBodyForIndex(controller.currentIndex.value),
-      ),
-      floatingActionButton:  Container(
-        height: width*0.18,
-        width: width*0.18,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle
+    return SafeArea(
+      child: Scaffold(
+        body: Obx(
+          () => _getBodyForIndex(controller.currentIndex.value),
         ),
-        child: FloatingActionButton(
-          elevation: 0,
-          backgroundColor: appColor,
-          shape: const CircleBorder(),
-          onPressed: () {},
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(180),
-              border: Border.all(
-                color: Colors.white,
-                width: height*width*0.00002,
-
+        floatingActionButton:  Container(
+          height: width*0.18,
+          width: width*0.18,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle
+          ),
+          child: FloatingActionButton(
+            elevation: 0,
+            backgroundColor: appColor,
+            shape: const CircleBorder(),
+            onPressed: () {},
+            child: Container(
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(180),
+                border: Border.all(
+                  color: Colors.white,
+                  width: height*width*0.00002,
+      
+                ),
+              ),
+              child: SvgPicture.asset('assets/images/scanner.svg',width: width*0.07,)
+            ),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: Obx(() => Stack(
+          children: [
+            Container(
+              height: height*0.12,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                color: appColor2, // Set the desired background color
               ),
             ),
-            child: SvgPicture.asset('assets/images/scanner.svg',width: width*0.07,)
-          ),
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: Obx(() => Stack(
-        children: [
-          Container(
-            height: height*0.11,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: BottomNavigationBar(
+                elevation: 0,
+                selectedFontSize: width*0.036,
+                unselectedFontSize: width*0.036,
+                backgroundColor: appColor2,
+                selectedItemColor: Colors.black,
+                // Set to your desired color
+                unselectedItemColor: Colors.grey,
+                // Set to the same color as selectedItemColor
+                iconSize:width*0.08,
+                selectedIconTheme: const IconThemeData(color: Colors.black),
+      
+                // Set to your desired color
+                unselectedIconTheme: const IconThemeData(color: Colors.grey),
+      
+                //
+                type: BottomNavigationBarType.fixed,
+                currentIndex: controller.currentIndex.value,
+                onTap: (index) {
+                  controller.changeIndex(index);
+                },
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home_outlined,
+      
+                    ),
+                    label: 'Home',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.add_card_outlined,
+      
+                    ),
+                    label: 'Add Advert',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.payments_outlined,
+      
+                    ),
+                    label: 'Payments',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.person_2_outlined,),
+                      label: 'Profile',
+                  ),
+                ],
               ),
-              color: appColor2, // Set the desired background color
             ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: BottomNavigationBar(
-              elevation: 0,
-              selectedFontSize: width*0.036,
-              unselectedFontSize: width*0.036,
-              backgroundColor: appColor2,
-              selectedItemColor: Colors.black,
-              // Set to your desired color
-              unselectedItemColor: Colors.grey,
-              // Set to the same color as selectedItemColor
-              iconSize:width*0.08,
-              selectedIconTheme: const IconThemeData(color: Colors.black),
-
-              // Set to your desired color
-              unselectedIconTheme: const IconThemeData(color: Colors.grey),
-
-              //
-              type: BottomNavigationBarType.fixed,
-              currentIndex: controller.currentIndex.value,
-              onTap: (index) {
-                controller.changeIndex(index);
-              },
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home_outlined,
-
-                  ),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.add_card_outlined,
-
-                  ),
-                  label: 'Add Advert',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.payments_outlined,
-
-                  ),
-                  label: 'Payments',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.person_2_outlined,),
-                    label: 'Profile',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),)
+          ],
+        ),)
+      ),
     );
   }
 

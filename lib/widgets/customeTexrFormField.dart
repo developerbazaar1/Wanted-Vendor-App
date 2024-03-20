@@ -89,18 +89,22 @@ class MyTextFeild extends StatelessWidget {
 class MyTextFeildMessage extends StatelessWidget {
   final TextEditingController controller;
   final String headingText;
+  final double? headingTextSize;
   final String? hintText;
   final Color? hintTextColor;
   final Color? fillColor;
   final int? maxLines;
   final FocusNode? focusNode;
+   final bool borderRequires;
   final Function(String)? onSubmit;
   final String? Function(String?)? validator;
-  const MyTextFeildMessage({
+   MyTextFeildMessage({
     super.key,
     required this.controller,
     required this.headingText,
+    this.headingTextSize,
     this.hintText,
+    this.borderRequires = true,
     this.fillColor,
     this.validator,
     this.focusNode,
@@ -115,8 +119,8 @@ class MyTextFeildMessage extends StatelessWidget {
     OutlineInputBorder lineBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(width * 0.012),
       borderSide: BorderSide(
-        width: width * 0.003,
-        color: Colors.black,
+        width: borderRequires ?width * 0.003:0,
+        color: borderRequires?Colors.black:Colors.white,
       ),
     );
     return Column(
@@ -125,7 +129,7 @@ class MyTextFeildMessage extends StatelessWidget {
         SizedBox(height: height * 0.02),
         MyTextQuickSand(
           text: headingText,
-          fontSize: width * 0.040,
+          fontSize: headingTextSize ?? width * 0.040,
           color: Colors.black,
           fontWeight: FontWeight.w700,
         ),

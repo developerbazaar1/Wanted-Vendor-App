@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:wanted/app/modules/abounWantedPrivacy/bindings/aboun_wanted_privacy_binding.dart';
+import 'package:wanted/app/modules/abounWantedPrivacy/views/aboun_wanted_privacy_view.dart';
 import 'package:wanted/app/modules/addAdvert/bindings/add_advert_binding.dart';
 import 'package:wanted/app/modules/addAdvert/views/add_advert_view.dart';
 import 'package:wanted/app/modules/advertPreview/bindings/advert_preview_binding.dart';
@@ -8,12 +10,18 @@ import 'package:wanted/app/modules/advertShowCase/bindings/advert_show_case_bind
 import 'package:wanted/app/modules/advertShowCase/views/advert_show_case_view.dart';
 import 'package:wanted/app/modules/bottombar/bindings/bottombar_binding.dart';
 import 'package:wanted/app/modules/bottombar/views/bottombar_view.dart';
+import 'package:wanted/app/modules/customerInquiries/bindings/customer_inquiries_binding.dart';
+import 'package:wanted/app/modules/customerInquiries/views/customer_inquiries_view.dart';
 import 'package:wanted/app/modules/editAdvert/bindings/edit_advert_binding.dart';
 import 'package:wanted/app/modules/editAdvert/views/edit_advert_view.dart';
+import 'package:wanted/app/modules/helpAndsupport/bindings/help_andsupport_binding.dart';
+import 'package:wanted/app/modules/helpAndsupport/views/help_andsupport_view.dart';
 import 'package:wanted/app/modules/home/bindings/home_binding.dart';
 import 'package:wanted/app/modules/home/views/home_view.dart';
 import 'package:wanted/app/modules/login/bindings/login_binding.dart';
 import 'package:wanted/app/modules/login/views/login_view.dart';
+import 'package:wanted/app/modules/paymentHistory/bindings/payment_history_binding.dart';
+import 'package:wanted/app/modules/paymentHistory/views/payment_history_view.dart';
 import 'package:wanted/app/modules/payments/bindings/payments_binding.dart';
 import 'package:wanted/app/modules/payments/views/payments_view.dart';
 import 'package:wanted/app/modules/postAgainAdvert/bindings/post_again_advert_binding.dart';
@@ -22,6 +30,8 @@ import 'package:wanted/app/modules/profile/bindings/profile_binding.dart';
 import 'package:wanted/app/modules/profile/views/profile_view.dart';
 import 'package:wanted/app/modules/providerPortfolio/bindings/provider_portfolio_binding.dart';
 import 'package:wanted/app/modules/providerPortfolio/views/provider_portfolio_view.dart';
+import 'package:wanted/app/modules/rewardsHub/bindings/rewards_hub_binding.dart';
+import 'package:wanted/app/modules/rewardsHub/views/rewards_hub_view.dart';
 import 'package:wanted/app/modules/signUp/bindings/sign_up_binding.dart';
 import 'package:wanted/app/modules/signUp/views/sign_up_view.dart';
 import 'package:wanted/app/modules/splashScreen/bindings/splash_screen_binding.dart';
@@ -58,7 +68,12 @@ class AppPages {
     GetPage(
       name: _Paths.BOTTOMBAR,
       page: () => BottombarView(),
-      bindings: [BottombarBinding(), HomeBinding(), AddAdvertBinding()],
+      bindings: [
+        BottombarBinding(),
+        HomeBinding(),
+        AddAdvertBinding(),
+        PaymentsBinding()
+      ],
     ),
     GetPage(
       name: _Paths.ADD_ADVERT,
@@ -99,6 +114,31 @@ class AppPages {
       name: _Paths.ADVERT_PREVIEW,
       page: () => AdvertPreviewView(),
       binding: AdvertPreviewBinding(),
+    ),
+    GetPage(
+      name: _Paths.CUSTOMER_INQUIRIES,
+      page: () => CustomerInquiriesView(),
+      binding: CustomerInquiriesBinding(),
+    ),
+    GetPage(
+      name: _Paths.REWARDS_HUB,
+      page: () => RewardsHubView(),
+      binding: RewardsHubBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT_HISTORY,
+      page: () => PaymentHistoryView(),
+      binding: PaymentHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUN_WANTED_PRIVACY,
+      page: () => AbounWantedPrivacyView(),
+      binding: AbounWantedPrivacyBinding(),
+    ),
+    GetPage(
+      name: _Paths.HELP_ANDSUPPORT,
+      page: () => HelpAndsupportView(),
+      binding: HelpAndsupportBinding(),
     ),
   ];
 }

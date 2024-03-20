@@ -17,6 +17,11 @@ abstract class Routes {
   static const POST_AGAIN_ADVERT = _Paths.POST_AGAIN_ADVERT;
   static const EDIT_ADVERT = _Paths.EDIT_ADVERT;
   static const ADVERT_PREVIEW = _Paths.ADVERT_PREVIEW;
+  static const CUSTOMER_INQUIRIES = _Paths.CUSTOMER_INQUIRIES;
+  static const REWARDS_HUB = _Paths.REWARDS_HUB;
+  static const PAYMENT_HISTORY = _Paths.PAYMENT_HISTORY;
+  static const ABOUN_WANTED_PRIVACY = _Paths.ABOUN_WANTED_PRIVACY;
+  static const HELP_ANDSUPPORT = _Paths.HELP_ANDSUPPORT;
 }
 
 abstract class _Paths {
@@ -33,4 +38,9 @@ abstract class _Paths {
   static const POST_AGAIN_ADVERT = '/post-again-advert';
   static const EDIT_ADVERT = '/edit-advert';
   static const ADVERT_PREVIEW = '/advert-preview';
+  static const CUSTOMER_INQUIRIES = '/customer-inquiries';
+  static const REWARDS_HUB = '/rewards-hub';
+  static const PAYMENT_HISTORY = '/payment-history';
+  static const ABOUN_WANTED_PRIVACY = '/aboun-wanted-privacy';
+  static const HELP_ANDSUPPORT = '/help-andsupport';
 }

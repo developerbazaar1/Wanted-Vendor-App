@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:wanted/utils/color.dart';
 import 'package:wanted/utils/myText.dart';
 import 'package:wanted/widgets/globalAppbar.dart';
 
-import '../controllers/payments_controller.dart';
+import '../controllers/rewards_hub_controller.dart';
 
-class PaymentsView extends GetView<PaymentsController> {
-
-  var argument = Get.arguments;
-
-  PaymentsView({super.key});
+class RewardsHubView extends GetView<RewardsHubController> {
   @override
   Widget build(BuildContext context) {
-    argument ??= false;
     var height = MediaQuery.sizeOf(context).height;
     var width = MediaQuery.sizeOf(context).width;
     return  Scaffold(
@@ -35,11 +31,11 @@ class PaymentsView extends GetView<PaymentsController> {
                         onTap: () {
                           Get.back();
                         },
-                        child: argument?Icon(
+                        child: Icon(
                           Icons.arrow_back_ios,
-                          size: width * 0.06,
-
-                        ):SizedBox(width: width * 0.08,)),
+                          size: width * 0.06,weight: 1
+                          ,
+                        )),
                   ),
                   SizedBox(
                     width: width * 0.12,
@@ -47,17 +43,17 @@ class PaymentsView extends GetView<PaymentsController> {
                   Column(
                     children: [
                       MyTextQuickSand(
-                        text: 'Payment History',
+                        text: 'Rewards Hub',
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
-                        fontSize: width * 0.063,
+                        fontSize: width * 0.061,
                       ),
                       SizedBox(height: height*0.01,),
                       MyTextQuickSand(
-                        text: 'View Payment History',
+                        text: 'Track Customer Bonuses',
                         color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: width * 0.046 ,
+                        fontWeight: FontWeight.w500,
+                        fontSize: width * 0.045,
                       )
                     ],
                   ),
@@ -80,9 +76,10 @@ class PaymentsView extends GetView<PaymentsController> {
                               [
                                 'S.No.',
                                 'Date',
-                                'Description',
-                                'Amount',
-                                'Status',
+                                'User Name',
+                                'Reward Description',
+                                'Point Collected',
+                                'Reward Used',
                               ],
                               isHeader: true),
                           for (List<dynamic> rowData
@@ -119,14 +116,18 @@ class PaymentsView extends GetView<PaymentsController> {
                     : index == cells.length-2
                     ? Center(child:Padding(
                   padding: EdgeInsets.only(top: width*0.05),
-                  child: MyTextQuickSand(text: cells[index],color: Colors.black,fontSize: width*0.033,fontWeight: FontWeight.w600,),
-                )
-                ) : index == cells.length-1
+                  child: Row(
+                    children: [
+                      MyTextQuickSand(text: cells[index],color: appColor,fontSize: width*0.033,fontWeight: FontWeight.w500,),
+                      SizedBox(width: width*0.02,),
+                      Icon(Icons.arrow_upward_rounded, size: width*0.045,color: appColor,)
+                    ],
+                  ),
+                )): index == cells.length-4
                     ? Center(child:Padding(
                   padding: EdgeInsets.only(top: width*0.05),
-                  child: MyTextQuickSand(text: cells[index],color: cells[index] == 'Canceled' ? Colors.red:appColor,fontSize: width*0.033,fontWeight: FontWeight.w500,),
-                )
-                )
+                  child: MyTextQuickSand(text: cells[index],color: Colors.black,fontSize: width*0.033,fontWeight: FontWeight.w600,),
+                ))
                     : Padding(
                   padding:  EdgeInsets.only(top: width*0.05),
                   child: MyTextQuickSand(text: cells[index],color: Colors.black,fontSize: width*0.033,fontWeight: FontWeight.w500,),

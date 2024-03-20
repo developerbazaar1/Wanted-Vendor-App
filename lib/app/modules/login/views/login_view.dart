@@ -54,7 +54,7 @@ class LoginView extends GetView<LoginController> {
                                       width: width * 0.3,
                                     ),
                                     SizedBox(height: height * 0.03),
-                                    MyTextQuickSand(
+                                    const MyTextQuickSand(
                                         text:
                                             'Welcome back, Vendor!\nManage Your Deals Here.'),
                                     // Text(
@@ -99,7 +99,7 @@ class LoginView extends GetView<LoginController> {
                                               onChanged: (onChanged) {}),
                                         ),
                                         SizedBox(width: width * 0.025),
-                                        MyTextLato(text: 'Save My Login Details'),
+                                        const MyTextLato(text: 'Save My Login Details'),
                                       ],
                                     ),
                                     SizedBox(height: height * 0.02),
