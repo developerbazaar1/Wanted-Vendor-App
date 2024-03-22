@@ -28,10 +28,15 @@ class BottombarView extends GetView<BottombarController> {
             shape: BoxShape.circle
           ),
           child: FloatingActionButton(
+
             elevation: 0,
             backgroundColor: appColor,
             shape: const CircleBorder(),
-            onPressed: () {},
+            onPressed: () {
+
+
+              Get.toNamed('/qr-scanner');
+            },
             child: Container(
               alignment: Alignment.center,
               decoration: BoxDecoration(

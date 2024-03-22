@@ -90,12 +90,17 @@ class HomeView extends GetView<HomeController> {
                     width,
                     height),
               ),
-              costumeTile(
-                  'assets/images/AccountCustomizationIcon.svg',
-                  "Account Customization",
-                  "Fine-Tune Your Vendor Account",
-                  width,
-                  height),
+              InkWell(
+                onTap: (){
+                  Get.toNamed('/account-customization');
+                },
+                child: costumeTile(
+                    'assets/images/AccountCustomizationIcon.svg',
+                    "Account Customization",
+                    "Fine-Tune Your Vendor Account",
+                    width,
+                    height),
+              ),
 
               SizedBox(height: height*0.05,)
             ],

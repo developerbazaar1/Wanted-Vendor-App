@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import 'package:wanted/app/modules/abounWantedPrivacy/bindings/aboun_wanted_privacy_binding.dart';
 import 'package:wanted/app/modules/abounWantedPrivacy/views/aboun_wanted_privacy_view.dart';
+import 'package:wanted/app/modules/accountCustomization/bindings/account_customization_binding.dart';
+import 'package:wanted/app/modules/accountCustomization/views/account_customization_view.dart';
 import 'package:wanted/app/modules/addAdvert/bindings/add_advert_binding.dart';
 import 'package:wanted/app/modules/addAdvert/views/add_advert_view.dart';
 import 'package:wanted/app/modules/advertPreview/bindings/advert_preview_binding.dart';
@@ -10,10 +12,14 @@ import 'package:wanted/app/modules/advertShowCase/bindings/advert_show_case_bind
 import 'package:wanted/app/modules/advertShowCase/views/advert_show_case_view.dart';
 import 'package:wanted/app/modules/bottombar/bindings/bottombar_binding.dart';
 import 'package:wanted/app/modules/bottombar/views/bottombar_view.dart';
+import 'package:wanted/app/modules/buySubscription/bindings/buy_subscription_binding.dart';
+import 'package:wanted/app/modules/buySubscription/views/buy_subscription_view.dart';
 import 'package:wanted/app/modules/customerInquiries/bindings/customer_inquiries_binding.dart';
 import 'package:wanted/app/modules/customerInquiries/views/customer_inquiries_view.dart';
 import 'package:wanted/app/modules/editAdvert/bindings/edit_advert_binding.dart';
 import 'package:wanted/app/modules/editAdvert/views/edit_advert_view.dart';
+import 'package:wanted/app/modules/forgetPassword/bindings/forget_password_binding.dart';
+import 'package:wanted/app/modules/forgetPassword/views/forget_password_view.dart';
 import 'package:wanted/app/modules/helpAndsupport/bindings/help_andsupport_binding.dart';
 import 'package:wanted/app/modules/helpAndsupport/views/help_andsupport_view.dart';
 import 'package:wanted/app/modules/home/bindings/home_binding.dart';
@@ -30,6 +36,10 @@ import 'package:wanted/app/modules/profile/bindings/profile_binding.dart';
 import 'package:wanted/app/modules/profile/views/profile_view.dart';
 import 'package:wanted/app/modules/providerPortfolio/bindings/provider_portfolio_binding.dart';
 import 'package:wanted/app/modules/providerPortfolio/views/provider_portfolio_view.dart';
+import 'package:wanted/app/modules/qrScanner/bindings/qr_scanner_binding.dart';
+import 'package:wanted/app/modules/qrScanner/views/qr_scanner_view.dart';
+import 'package:wanted/app/modules/resetPassword/bindings/reset_password_binding.dart';
+import 'package:wanted/app/modules/resetPassword/views/reset_password_view.dart';
 import 'package:wanted/app/modules/rewardsHub/bindings/rewards_hub_binding.dart';
 import 'package:wanted/app/modules/rewardsHub/views/rewards_hub_view.dart';
 import 'package:wanted/app/modules/signUp/bindings/sign_up_binding.dart';
@@ -139,6 +149,31 @@ class AppPages {
       name: _Paths.HELP_ANDSUPPORT,
       page: () => HelpAndsupportView(),
       binding: HelpAndsupportBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGET_PASSWORD,
+      page: () => ForgetPasswordView(),
+      binding: ForgetPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESET_PASSWORD,
+      page: () => ResetPasswordView(),
+      binding: ResetPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.ACCOUNT_CUSTOMIZATION,
+      page: () => AccountCustomizationView(),
+      binding: AccountCustomizationBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUY_SUBSCRIPTION,
+      page: () => BuySubscriptionView(),
+      binding: BuySubscriptionBinding(),
+    ),
+    GetPage(
+      name: _Paths.QR_SCANNER,
+      page: () => QrScannerView(),
+      binding: QrScannerBinding(),
     ),
   ];
 }

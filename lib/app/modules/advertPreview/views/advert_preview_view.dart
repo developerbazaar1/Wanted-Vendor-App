@@ -29,32 +29,34 @@ class AdvertPreviewView extends GetView<AdvertPreviewController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Stack(
                   children: [
-                    InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(top: width * 0.02),
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            size: width * 0.06,
-                          ),
-                        )),
-                    SizedBox(
-                      width: width * 0.17,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  top: width * 0.02, left: width * 0.03),
+                              child: Icon(
+                                Icons.arrow_back_ios,
+                                size: width * 0.06,
+                              ))),
                     ),
-                    MyTextQuickSand(
-                      text: 'Raybella Nails',
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: width * 0.066,
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: MyTextQuickSand(
+                        text: 'Raybella Nails',
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600,
+                        fontSize: width * 0.061,
+                      ),
                     ),
                   ],
                 ),
+                SizedBox(height: height * 0.02),
                 const Divider(),
                 SizedBox(height: height * 0.005),
                 Container(

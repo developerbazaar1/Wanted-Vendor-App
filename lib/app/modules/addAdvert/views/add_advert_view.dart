@@ -16,6 +16,8 @@ class AddAdvertView extends GetView<AddAdvertController> {
   TextEditingController c = TextEditingController();
   final TextEditingController _controller = TextEditingController();
   var argu = Get.arguments;
+  @override
+  AddAdvertController controller = AddAdvertController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,34 +39,38 @@ class AddAdvertView extends GetView<AddAdvertController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Stack(
                 children: [
-                  InkWell(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: width * 0.02, left: width * 0.03),
-                        child: argu
-                            ? Icon(
-                                Icons.arrow_back_ios,
-                                size: width * 0.06,
-                              )
-                            : SizedBox(
-                                width: width * 0.05,
-                              ),
-                      )),
-                  SizedBox(
-                    width: width * 0.15,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: width * 0.02, left: width * 0.03),
+                          child: argu
+                              ? Icon(
+                                  Icons.arrow_back_ios,
+                                  size: width * 0.06,
+                                )
+                              : SizedBox(
+                                  width: width * 0.05,
+                                ),
+                        )),
                   ),
-                  MyTextQuickSand(
-                    text: 'Add New Advert',
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    fontSize: width * 0.066,
+                  // SizedBox(
+                  //   width: width * 0.15,
+                  // ),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: MyTextQuickSand(
+                      text: 'Add New Advert',
+                      color: Colors.black,
+                      fontWeight: FontWeight.w600,
+                      fontSize: width * 0.066,
+                    ),
                   ),
                 ],
               ),

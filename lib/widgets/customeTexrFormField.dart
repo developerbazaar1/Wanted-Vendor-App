@@ -4,19 +4,23 @@ import 'package:wanted/utils/color.dart';
 import 'package:wanted/utils/myText.dart';
 class MyTextFeild extends StatelessWidget {
   final TextEditingController controller;
-  final String headingText;
+  final String? headingText;
   final String hintText;
   final Color? hintTextColor;
   final Color? fillColor;
   final int? maxLines;
+  final Widget? suffix;
+  final double? textFieldHeight;
   final FocusNode? focusNode;
   final Function(String)? onSubmit;
   final String? Function(String?)? validator;
   const MyTextFeild({
     super.key,
     required this.controller,
-    required this.headingText,
     required this.hintText,
+    this.headingText,
+   this.textFieldHeight,
+    this.suffix,
     this.fillColor,
     this.validator,
     this.focusNode,
@@ -40,20 +44,21 @@ class MyTextFeild extends StatelessWidget {
       children: [
         SizedBox(height: height * 0.02),
         MyTextQuickSand(
-          text: headingText,
+          text: headingText??'',
           fontSize: width * 0.040,
           color: Colors.black,
           fontWeight: FontWeight.w700,
         ),
         SizedBox(height: height * 0.007),
         SizedBox(
-          height: height*0.05,
+          height: textFieldHeight??height*0.05,
           child: TextFormField(
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
             controller: controller,
             cursorColor: Colors.black,
             maxLines: maxLines ?? 1,
             decoration: InputDecoration(
+              suffixIcon: suffix??SizedBox(),
               contentPadding: EdgeInsets.only(top: 0,left: width*0.03),
               floatingLabelBehavior: FloatingLabelBehavior.never,
               hintText: hintText,

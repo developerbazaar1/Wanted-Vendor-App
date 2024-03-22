@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:wanted/app/modules/bottombar/controllers/bottombar_controller.dart';
 import 'package:wanted/utils/color.dart';
 import 'package:wanted/utils/myText.dart';
 import 'package:wanted/widgets/globalAppbar.dart';
@@ -22,14 +23,19 @@ class ProfileView extends GetView<ProfileController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              profileContainer(
-                  width,
-                  height,
-                  SvgPicture.asset(
-                    'assets/images/AccountCustomizationIcon.svg',
-                    width: width * 0.075,
-                  ),
-                  "Account Customization"),
+              InkWell(
+                onTap: (){
+                  Get.toNamed('/account-customization');
+                },
+                child: profileContainer(
+                    width,
+                    height,
+                    SvgPicture.asset(
+                      'assets/images/AccountCustomizationIcon.svg',
+                      width: width * 0.075,
+                    ),
+                    "Account Customization"),
+              ),
               InkWell(
                 onTap: (){
                   Get.toNamed('/add-advert',arguments: true);
@@ -111,6 +117,7 @@ class ProfileView extends GetView<ProfileController> {
                   ),
                 ),
               ),
+
             ],
           ),
         ));

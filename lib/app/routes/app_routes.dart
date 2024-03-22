@@ -22,6 +22,11 @@ abstract class Routes {
   static const PAYMENT_HISTORY = _Paths.PAYMENT_HISTORY;
   static const ABOUN_WANTED_PRIVACY = _Paths.ABOUN_WANTED_PRIVACY;
   static const HELP_ANDSUPPORT = _Paths.HELP_ANDSUPPORT;
+  static const FORGET_PASSWORD = _Paths.FORGET_PASSWORD;
+  static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
+  static const ACCOUNT_CUSTOMIZATION = _Paths.ACCOUNT_CUSTOMIZATION;
+  static const BUY_SUBSCRIPTION = _Paths.BUY_SUBSCRIPTION;
+  static const QR_SCANNER = _Paths.QR_SCANNER;
 }
 
 abstract class _Paths {
@@ -43,4 +48,9 @@ abstract class _Paths {
   static const PAYMENT_HISTORY = '/payment-history';
   static const ABOUN_WANTED_PRIVACY = '/aboun-wanted-privacy';
   static const HELP_ANDSUPPORT = '/help-andsupport';
+  static const FORGET_PASSWORD = '/forget-password';
+  static const RESET_PASSWORD = '/reset-password';
+  static const ACCOUNT_CUSTOMIZATION = '/account-customization';
+  static const BUY_SUBSCRIPTION = '/buy-subscription';
+  static const QR_SCANNER = '/qr-scanner';
 }

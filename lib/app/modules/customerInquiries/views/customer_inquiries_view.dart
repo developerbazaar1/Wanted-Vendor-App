@@ -163,7 +163,62 @@ class CustomerInquiriesView extends GetView<CustomerInquiriesController> {
                   : index == cells.length-1
                   ? Center(child:Padding(
                     padding: EdgeInsets.only(top: width*0.05),
-                    child: MyTextQuickSand(text: cells[index],color: appColor,fontSize: width*0.033,fontWeight: FontWeight.w500,),
+                    child: InkWell(
+                        onTap: (){
+                          showDialog(context: context, builder: (context) {
+                            return AlertDialog
+                              (
+                              shape: const Border.symmetric(),
+                              actionsAlignment: MainAxisAlignment.center,
+                              title: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topCenter,
+
+                                      child: MyTextQuickSand(text: 'Inquiry Details',color: Colors.black,fontSize: width*0.04,fontWeight: FontWeight.w500,)),
+
+                                  Align(
+                                      alignment: Alignment.topRight,
+                                      child: InkWell(
+                                          onTap: (){
+                                            Get.back();
+                                          },
+                                          child: Icon(Icons.close)))
+                                ],
+                              ),
+                              content: SizedBox(
+                              height: height*0.11,
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                      MyTextLato(text: 'Customer Name:',color: Colors.grey.shade800,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                      MyTextLato(text: 'Allyson Rollins',color: Colors.black,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                      SizedBox(height: height*0.025,),
+                                      MyTextLato(text: 'Phone No.:',color: Colors.grey.shade800,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                      MyTextLato(text: '90009-90009',color: Colors.black,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                    ],),
+                                    SizedBox(width: width*0.06,),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                      MyTextLato(text: 'Date & Time:',color: Colors.grey.shade800,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                      MyTextLato(text: 'Tuesday, 12 Sept 2023',color: Colors.black,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                      SizedBox(height: height*0.025,),
+                                      MyTextLato(text: 'Email Address:',color: Colors.grey.shade800,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                      MyTextLato(text: 'abc@gmail.com',color: Colors.black,fontSize: width*0.032,fontWeight: FontWeight.w600,),
+                                    ],),
+                                  ],
+                                ),
+                              ),
+
+
+                            );
+                          }
+                            ,);
+                        },
+                        child: MyTextQuickSand(text: cells[index],color: appColor,fontSize: width*0.033,fontWeight: FontWeight.w500,)),
                   ))
                   : Padding(
                     padding:  EdgeInsets.only(top: width*0.05),

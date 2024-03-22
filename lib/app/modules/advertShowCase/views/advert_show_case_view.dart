@@ -17,26 +17,32 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
       appBar: CustomAppBar(
         width: width,
       ),
-      body: Stack(
-        children: [
-          Positioned(
-              top: width * 0.05,
-              left: width * 0.05,
-              child: InkWell(
-                onTap: () {
-                  Get.back();
-                },
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  size: width * 0.06,
-                ),
-              )),
-          Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            vertical: height * 0.02, horizontal: width * 0.03),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
               children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: width * 0.044),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: width * 0.02, left: width * 0.03),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: width * 0.06,
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.topCenter,
                   child: MyTextQuickSand(
                     text: 'Advert Showcase',
                     color: Colors.black,
@@ -44,105 +50,107 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
                     fontSize: width * 0.066,
                   ),
                 ),
-                MyTextQuickSand(
-                  text: 'Display Your Advertisments',
+              ],
+            ),
+            SizedBox(height: height * 0.01),
+
+            MyTextQuickSand(
+              text: 'Display Your Advertisments',
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: width * 0.055,
+            ),
+            SizedBox(height: height * 0.008),
+            MyTextQuickSand(
+              text: 'A Space for Your Ad Campaigns',
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: width * 0.044,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: width * 0.034),
+              width: width * 0.4,
+              height: height * 0.045,
+              decoration: BoxDecoration(
+                  color: appColor2,
+                  borderRadius: BorderRadius.circular(width * 0.02)),
+              child: Center(
+                  child: InkWell(
+                onTap: () {
+                  Get.toNamed('/buy-subscription');
+                },
+                child: MyTextQuickSand(
+                  text: 'Buy Subscription',
                   color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: width * 0.055,
+                  fontSize: width * 0.04,
+                  fontWeight: FontWeight.w600,
                 ),
-                SizedBox(height: height * 0.008),
-                MyTextQuickSand(
-                  text: 'A Space for Your Ad Campaigns',
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                  fontSize: width * 0.044,
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: width * 0.034),
-                  width: width * 0.4,
-                  height: height * 0.045,
-                  decoration: BoxDecoration(
-                      color: appColor2,
-                      borderRadius: BorderRadius.circular(width * 0.02)),
-                  child: Center(
-                      child: InkWell(
-                    onTap: () {
-                      Get.toNamed('/post-again-advert');
-                    },
-                    child: MyTextQuickSand(
-                      text: 'Buy Subscription',
+              )),
+            ),
+            InkWell(
+              onTap: () {
+                Get.toNamed('/add-advert',arguments: true);
+              },
+              child: Container(
+                width: width * 0.6,
+                height: height * 0.045,
+                decoration: BoxDecoration(
+                    color: appColor,
+                    borderRadius: BorderRadius.circular(width * 0.02)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyTextQuickSand(
+                      text: 'Add A New Advert',
                       color: Colors.black,
                       fontSize: width * 0.04,
                       fontWeight: FontWeight.w600,
                     ),
-                  )),
+                    SizedBox(
+                      width: width * 0.03,
+                    ),
+                    const Icon(Icons.add_circle_outline)
+                  ],
                 ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed('/add-advert',arguments: true);
-                  },
-                  child: Container(
-                    width: width * 0.6,
-                    height: height * 0.045,
-                    decoration: BoxDecoration(
-                        color: appColor,
-                        borderRadius: BorderRadius.circular(width * 0.02)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              ),
+            ),
+            SizedBox(height: height * 0.02),
+            Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Table(
+                      defaultColumnWidth: const IntrinsicColumnWidth(),
                       children: [
-                        MyTextQuickSand(
-                          text: 'Add A New Advert',
-                          color: Colors.black,
-                          fontSize: width * 0.04,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                        const Icon(Icons.add_circle_outline)
+                        _buildTableRow(
+                            width,
+                            height,context,
+                            [
+                              'S.No.',
+                              'Advert Name',
+                              'Where To Show',
+                              'Advert Price',
+                              'Creation Date',
+                              'Expire Data',
+                              'Status',
+                              'Manage Advert',
+                              'Show/Hide Ads'
+                            ],
+                            isHeader: true),
+                        for (List<dynamic> rowData
+                            in controller.dynamicData)
+                          _buildTableRow(width, height,context,
+                              rowData.map((e) => e.toString()).toList()),
                       ],
                     ),
                   ),
                 ),
-                SizedBox(height: height * 0.02),
-                Expanded(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Container(
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Table(
-                          defaultColumnWidth: IntrinsicColumnWidth(),
-                          children: [
-                            _buildTableRow(
-                                width,
-                                height,context,
-                                [
-                                  'S.No.',
-                                  'Advert Name',
-                                  'Where To Show',
-                                  'Advert Price',
-                                  'Creation Date',
-                                  'Expire Data',
-                                  'Status',
-                                  'Manage Advert',
-                                  'Show/Hide Ads'
-                                ],
-                                isHeader: true),
-                            for (List<dynamic> rowData
-                                in controller.dynamicData)
-                              _buildTableRow(width, height,context,
-                                  rowData.map((e) => e.toString()).toList()),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -160,7 +168,7 @@ class AdvertShowCaseView extends GetView<AdvertShowCaseController> {
     } else if (selectedItem == 'Delete') {
       showDialog(context: context, builder: (context) {
         return AlertDialog(
-          shape: Border.symmetric(),
+          shape: const Border.symmetric(),
           actionsAlignment: MainAxisAlignment.center,
           title: MyTextQuickSand(text: 'Do You Want To Delete It?',color: Colors.black,fontSize: width*0.05,fontWeight: FontWeight.w500,),
           actions: [
