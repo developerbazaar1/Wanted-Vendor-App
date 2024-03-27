@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:wanted/utils/color.dart';
 import 'package:wanted/utils/myText.dart';
 
-import 'package:wanted/utils/size_utils.dart';
-import 'package:wanted/utils/textStyle.dart';
-import 'package:wanted/widgets/customButton.dart';
-import 'package:wanted/widgets/customTextfield.dart';
+import 'package:wanted/widgets/customeTexrFormField.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -67,11 +63,13 @@ class LoginView extends GetView<LoginController> {
                                     //     ),
                                   ),
                                   SizedBox(height: height * 0.03),
-                                  customTextField('assets/images/Mail.svg',
-                                      'Enter Email Address', width, height),
+                                  MyAuthTextField(controller: controller.emailC, hintText: "Enter Email Address", validatorText: "Email", img: "assets/images/Mail.svg"),
+                                  // customTextField('assets/images/Mail.svg',
+                                  //     'Enter Email Address', width, height,c),
                                   SizedBox(height: height * 0.015),
-                                  customTextField('assets/images/pass.svg',
-                                      'Password', width, height),
+                                  MyAuthTextField(controller: controller.passwordC, hintText: "Password", validatorText: "Password", img: "assets/images/pass.svg"),
+                                  // customTextField('assets/images/pass.svg',
+                                  //     'Password', width, height,c),
                                   SizedBox(height: height * 0.025),
                                   Row(
                                     mainAxisAlignment:
@@ -85,23 +83,62 @@ class LoginView extends GetView<LoginController> {
                                             BorderRadius.circular(3),
                                             border: Border.all(
                                                 color: Colors.white)),
-                                        child: Checkbox(
+                                        child: Obx(() => Checkbox(
                                             activeColor: Colors.transparent
                                                 .withOpacity(0.4),
-                                            value: (true),
-                                            onChanged: (onChanged) {}),
+                                            value: (controller.checkBox.value),
+                                            onChanged: (value) {
+                                              controller.checkBox.value = value!;
+
+                                            }),)
                                       ),
                                       SizedBox(width: width * 0.025),
                                       const MyTextLato(text: 'Save My Login Details'),
                                     ],
                                   ),
                                   SizedBox(height: height * 0.02),
-                                  InkWell(
-                                      onTap: () {
-                                        Get.toNamed('/bottombar');
-                                      },
-                                      child: customeButton(
-                                          width, height, 'LOGIN')),
+                                  ElevatedButton(
+
+                                      onPressed: () {
+                                        // Get.toNamed('/bottombar');
+
+                                        if (_formKey.currentState!
+                                            .validate()) {
+                                          if (controller.checkBox == true) {
+                                            controller.userLogin();
+
+                                          } else {
+                                            Get.snackbar(
+                                              'Error',
+                                              'Text',
+                                              titleText: const MyTextQuickSand(
+                                                text: 'Please Check The Box',
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              messageText: const MyTextQuickSand(
+                                                text:
+                                                "Agree to Terms & Privacy to Create Account.",
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              backgroundColor: Colors.red,
+                                              colorText: Colors.white,
+                                              snackPosition:
+                                              SnackPosition.BOTTOM,
+                                            );
+                                            print('plese check the box');
+                                          }
+                                        }
+                                        // controller.userRegister()
+                                      }
+                                  ,child: MyTextQuickSand(text: 'LOGIN',)),
+
+                                  // InkWell(
+                                  //     onTap: () {
+                                  //     },
+                                  //     child: customeButton(
+                                  //         width, height, 'LOGIN')),
                                   SizedBox(height: height * 0.035),
 
                                   InkWell(

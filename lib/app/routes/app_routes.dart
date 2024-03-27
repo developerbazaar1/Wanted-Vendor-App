@@ -3,7 +3,6 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-
   static const HOME = _Paths.HOME;
   static const SPLASH_SCREEN = _Paths.SPLASH_SCREEN;
   static const LOGIN = _Paths.LOGIN;
@@ -19,7 +18,6 @@ abstract class Routes {
   static const ADVERT_PREVIEW = _Paths.ADVERT_PREVIEW;
   static const CUSTOMER_INQUIRIES = _Paths.CUSTOMER_INQUIRIES;
   static const REWARDS_HUB = _Paths.REWARDS_HUB;
-  static const PAYMENT_HISTORY = _Paths.PAYMENT_HISTORY;
   static const ABOUN_WANTED_PRIVACY = _Paths.ABOUN_WANTED_PRIVACY;
   static const HELP_ANDSUPPORT = _Paths.HELP_ANDSUPPORT;
   static const FORGET_PASSWORD = _Paths.FORGET_PASSWORD;
@@ -45,7 +43,6 @@ abstract class _Paths {
   static const ADVERT_PREVIEW = '/advert-preview';
   static const CUSTOMER_INQUIRIES = '/customer-inquiries';
   static const REWARDS_HUB = '/rewards-hub';
-  static const PAYMENT_HISTORY = '/payment-history';
   static const ABOUN_WANTED_PRIVACY = '/aboun-wanted-privacy';
   static const HELP_ANDSUPPORT = '/help-andsupport';
   static const FORGET_PASSWORD = '/forget-password';

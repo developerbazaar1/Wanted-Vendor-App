@@ -8,6 +8,7 @@ import 'package:wanted/utils/color.dart';
 import 'package:wanted/utils/myText.dart';
 import 'package:wanted/widgets/expandedText.dart';
 import 'package:wanted/widgets/globalAppbar.dart';
+import 'package:wanted/widgets/headingElement.dart';
 
 import '../controllers/advert_preview_controller.dart';
 
@@ -26,37 +27,10 @@ class AdvertPreviewView extends GetView<AdvertPreviewController> {
             padding: EdgeInsets.symmetric(
                 vertical: height * 0.02, horizontal: width * 0.03),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Stack(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Padding(
-                              padding: EdgeInsets.only(
-                                  top: width * 0.02, left: width * 0.03),
-                              child: Icon(
-                                Icons.arrow_back_ios,
-                                size: width * 0.06,
-                              ))),
-                    ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: MyTextQuickSand(
-                        text: 'Raybella Nails',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600,
-                        fontSize: width * 0.061,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: height * 0.02),
+               HeadingElement(text: 'Raybella Nails'),
+                SizedBox(height: height * 0.0025),
                 const Divider(),
                 SizedBox(height: height * 0.005),
                 Container(
@@ -221,7 +195,7 @@ class AdvertPreviewView extends GetView<AdvertPreviewController> {
                     border: Border.all(width: width*0.0005),
                     borderRadius: BorderRadius.circular(width*0.025)
                   ),
-                      
+
                       child: CarouselSlider(
                         options: CarouselOptions(
                           viewportFraction: 1,

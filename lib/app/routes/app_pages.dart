@@ -26,8 +26,6 @@ import 'package:wanted/app/modules/home/bindings/home_binding.dart';
 import 'package:wanted/app/modules/home/views/home_view.dart';
 import 'package:wanted/app/modules/login/bindings/login_binding.dart';
 import 'package:wanted/app/modules/login/views/login_view.dart';
-import 'package:wanted/app/modules/paymentHistory/bindings/payment_history_binding.dart';
-import 'package:wanted/app/modules/paymentHistory/views/payment_history_view.dart';
 import 'package:wanted/app/modules/payments/bindings/payments_binding.dart';
 import 'package:wanted/app/modules/payments/views/payments_view.dart';
 import 'package:wanted/app/modules/postAgainAdvert/bindings/post_again_advert_binding.dart';
@@ -135,11 +133,7 @@ class AppPages {
       page: () => RewardsHubView(),
       binding: RewardsHubBinding(),
     ),
-    GetPage(
-      name: _Paths.PAYMENT_HISTORY,
-      page: () => PaymentHistoryView(),
-      binding: PaymentHistoryBinding(),
-    ),
+
     GetPage(
       name: _Paths.ABOUN_WANTED_PRIVACY,
       page: () => AbounWantedPrivacyView(),

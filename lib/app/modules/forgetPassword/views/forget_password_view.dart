@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:wanted/utils/color.dart';
-import 'package:wanted/widgets/customButton.dart';
 import 'package:wanted/widgets/customTextfield.dart';
 
 import '../../../../utils/myText.dart';
@@ -10,6 +8,7 @@ import '../controllers/forget_password_controller.dart';
 
 class ForgetPasswordView extends GetView<ForgetPasswordController> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController c = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -78,15 +77,22 @@ class ForgetPasswordView extends GetView<ForgetPasswordController> {
                                       ),
                                       SizedBox(height: height * 0.03),
                                       customTextField('assets/images/Mail.svg',
-                                          'Enter Email Address', width, height),
+                                          'Enter Email Address', width, height,c),
                                       SizedBox(height: height * 0.025),
+                                      ElevatedButton(
+                                          onPressed: () {
+                                                  Get.toNamed('/reset-password');
 
-                                      InkWell(
-                                          onTap: () {
-                                            Get.toNamed('/reset-password');
                                           },
-                                          child: customeButton(
-                                              width, height, 'Submit')),
+                                          child: MyTextQuickSand(
+                                            text: 'Submit',
+                                          )),
+                                      // InkWell(
+                                      //     onTap: () {
+                                      //       Get.toNamed('/reset-password');
+                                      //     },
+                                      //     child: customeButton(
+                                      //         width, height, 'Submit')),
                                     ]),
                               ),
                             ),

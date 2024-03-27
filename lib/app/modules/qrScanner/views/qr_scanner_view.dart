@@ -41,14 +41,14 @@ class QrScannerView extends GetView<QrScannerController> {
                   children: [
                     Container(
                       padding: EdgeInsets.all(width * 0.04),
+                      decoration: BoxDecoration(
+                        color: appColor,
+                        shape: BoxShape.circle,
+                      ),
                       child: SvgPicture.asset(
                         'assets/images/scanner.svg',
                         height: height * 0.034,
                         fit: BoxFit.contain,
-                      ),
-                      decoration: BoxDecoration(
-                        color: appColor,
-                        shape: BoxShape.circle,
                       ),
                     ),
                     SizedBox(height: height * 0.008),

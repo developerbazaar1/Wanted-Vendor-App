@@ -9,6 +9,8 @@ import 'package:wanted/utils/myText.dart';
 import 'package:wanted/widgets/customeDropdown.dart';
 import 'package:wanted/widgets/customeTexrFormField.dart';
 import 'package:wanted/widgets/globalAppbar.dart';
+import 'package:wanted/widgets/headingElement.dart';
+import 'package:wanted/widgets/selectPlanCustomeWidget.dart';
 
 import '../controllers/add_advert_controller.dart';
 
@@ -28,6 +30,10 @@ class AddAdvertView extends GetView<AddAdvertController> {
     print(argu);
     var width = MediaQuery.sizeOf(context).width;
     var height = MediaQuery.sizeOf(context).height;
+    var value = Get.arguments;
+    if (value == null) {
+      value = false;
+    }
     return Scaffold(
       appBar: CustomAppBar(
         width: width,
@@ -39,41 +45,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: width * 0.02, left: width * 0.03),
-                          child: argu
-                              ? Icon(
-                                  Icons.arrow_back_ios,
-                                  size: width * 0.06,
-                                )
-                              : SizedBox(
-                                  width: width * 0.05,
-                                ),
-                        )),
-                  ),
-                  // SizedBox(
-                  //   width: width * 0.15,
-                  // ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: MyTextQuickSand(
-                      text: 'Add New Advert',
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600,
-                      fontSize: width * 0.066,
-                    ),
-                  ),
-                ],
-              ),
+              HeadingElement(text: 'Add New Advert', argu: value),
               MyTextFeild(
                 controller: c,
                 hintText: 'Enter your advert title',
@@ -264,14 +236,14 @@ class AddAdvertView extends GetView<AddAdvertController> {
                 ),
               ),
               SizedBox(
-                height: width * 0.012,
+                height: width * 0.012
               ),
               const MyTextLato(
                 text: "PNG or JPG no bigger than 800px wide and tall.",
-                color: Colors.black,
+                color: Colors.black
               ),
               SizedBox(
-                height: width * 0.025,
+                height: width * 0.07
               ),
               MyTextLato(
                 text: 'Do You Want To Add Products ?',
@@ -280,7 +252,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                 fontSize: width * 0.040,
               ),
               SizedBox(
-                height: width * 0.025,
+                height: width * 0.025
               ),
               Container(
                 width: width,
@@ -341,7 +313,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                     )),
               ),
               SizedBox(
-                height: width * 0.025,
+                height: width * 0.06,
               ),
               Obx(() => controller.selectedOptionForProduct.value
                   ? customeDropDown(
@@ -360,7 +332,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                     )
                   : const SizedBox()),
               SizedBox(
-                height: width * 0.025,
+                height: width * 0.025
               ),
               Obx(
                 () {
@@ -412,7 +384,7 @@ class AddAdvertView extends GetView<AddAdvertController> {
                 },
               ),
               SizedBox(
-                height: height * 0.01,
+                height: height * 0.01
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -428,225 +400,81 @@ class AddAdvertView extends GetView<AddAdvertController> {
                   SizedBox(
                     height: width * 0.025,
                   ),
-                  SizedBox(
-                    height: height * 0.6,
-                    child: LayoutBuilder(builder: (context, constraints) {
-                      // final width = constraints.maxWidth - (8 * 16); //for spacing
-
-                      return Obx(() => ListView(
-                            physics: const NeverScrollableScrollPhysics(),
-                            children: [
-                              Wrap(
-                                alignment: WrapAlignment.center,
-                                runSpacing: width * 0.05,
-                                spacing: width * 0.05,
-                                children: List.generate(
-                                    controller.planList.length,
-                                    (index) => InkWell(
-                                          onTap: () {
-                                            // controller.setSelectedPlan(true, index);
-
-                                            controller.isSelectedPlanIndex
-                                                .value = index;
-                                            controller
-                                                    .selectedPlanButton.value =
-                                                controller
-                                                    .planList[index].planName;
-                                          },
-                                          child: Container(
-                                            padding:
-                                                EdgeInsets.all(width * 0.009),
-                                            width: width * 0.38,
-                                            height: height * 0.25,
-                                            decoration: BoxDecoration(
-                                                color: controller
-                                                            .isSelectedPlanIndex
-                                                            .value !=
-                                                        index
-                                                    ? Colors.white
-                                                    : appColor2
-                                                        .withOpacity(0.8),
-                                                border: Border.all(
-                                                  width: controller
-                                                              .isSelectedPlanIndex
-                                                              .value !=
-                                                          index
-                                                      ? 1
-                                                      : 2,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                      color: Colors.grey
-                                                          .withOpacity(0.3),
-                                                      blurRadius: 8,
-                                                      spreadRadius: 4)
-                                                ]),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    Image.asset(
-                                                      controller
-                                                          .planList[index].img,
-                                                      width: width * 0.08,
-                                                    ),
-                                                    MyTextLato(
-                                                      text: controller
-                                                          .planList[index]
-                                                          .planName,
-                                                      fontSize: width * 0.042,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    )
-                                                  ],
-                                                ),
-                                                SizedBox(height: width * 0.025),
-                                                MyTextQuickSand(
-                                                    text: controller
-                                                        .planList[index]
-                                                        .planAmount,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: width * 0.04),
-                                                SizedBox(height: width * 0.003),
-                                                MyTextLato(
-                                                    text: 'Per Month',
-                                                    color: Colors.black,
-                                                    fontSize: width * 0.025),
-                                                SizedBox(height: width * 0.025),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    MyTextLato(
-                                                        text: 'Ads You Show',
-                                                        color: Colors.black,
-                                                        fontSize:
-                                                            width * 0.025),
-                                                    MyTextQuickSand(
-                                                      text: controller
-                                                          .planList[index]
-                                                          .numberOfAds,
-                                                      color: Colors.black,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: width * 0.04,
-                                                    )
-                                                  ],
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    MyTextLato(
-                                                        text:
-                                                            'Validity For Days',
-                                                        color: Colors.black,
-                                                        fontSize:
-                                                            width * 0.025),
-                                                    MyTextQuickSand(
-                                                        text: controller
-                                                            .planList[index]
-                                                            .numberOfDays,
-                                                        color: Colors.black,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize: width * 0.04)
-                                                  ],
-                                                ),
-                                                SizedBox(height: width * 0.025),
-                                                Container(
-                                                  padding: EdgeInsets.all(
-                                                      width * 0.01),
-                                                  margin: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 15),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              width * 0.01),
-                                                      color: controller
-                                                                  .isSelectedPlanIndex
-                                                                  .value !=
-                                                              index
-                                                          ? appColor2
-                                                          : Colors
-                                                              .lightBlueAccent
-                                                              .shade100
-                                                              .withOpacity(
-                                                                  0.5)),
-                                                  child: Center(
-                                                    child: MyTextQuickSand(
-                                                      text: controller
-                                                                  .isSelectedPlanIndex
-                                                                  .value !=
-                                                              index
-                                                          ? 'Select Plan'
-                                                          : 'Selected',
-                                                      color: Colors.black,
-                                                      fontSize: width * 0.04,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        )),
-                              ),
-                            ],
-                          ));
-                    }),
-                  ),
-
-                  InkWell(
-                      onTap: () {
+                  Obx(() => CustomPlanListView(
+                        dataList: controller.planList,
+                        onTap: (index) {
+                          controller.isSelectedPlanIndex.value = index;
+                          controller.selectedPlanButton.value =
+                              controller.planList[index].planName;
+                        },
+                        selectedIndex: controller.isSelectedPlanIndex.value,
+                      )),
+                  Obx(
+                    () => ElevatedButton(
+                      onPressed: () {
                         controller.isSelectedPlanIndex.value = 0;
                         controller.selectedPlanButton.value = controller
                             .planList[controller.isSelectedPlanIndex.value]
                             .planName;
                       },
-                      child: Obx(
-                        () => Container(
-                          padding: EdgeInsets.all(width * 0.015),
-                          decoration: BoxDecoration(color: appColor),
-                          child: MyTextQuickSand(
-                            text: controller.isSelectedPlanIndex == -1
-                                ? "Select Plan"
-                                : 'You have Selected ${controller.selectedPlanButton.value}',
-                            color: Colors.black,
-                            fontSize: width * 0.05,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      )),
-                  SizedBox(height: width * 0.025),
-                  Container(
-                    padding: EdgeInsets.all(width * 0.015),
-                    decoration: BoxDecoration(color: appColor),
-                    child: MyTextQuickSand(
-                      text: 'Submit',
-                      color: Colors.black,
-                      fontSize: width * 0.05,
-                      fontWeight: FontWeight.w600,
+                      child: MyTextQuickSand(
+                        text: controller.isSelectedPlanIndex == -1
+                            ? "Select Plan"
+                            : 'You have Selected ${controller.selectedPlanButton.value}',
+                        color: Colors.black,
+                        fontSize: width * 0.05,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
+                    //     Container(
+                    //   padding: EdgeInsets.all(width * 0.015),
+                    //   decoration: BoxDecoration(color: appColor),
+                    //   child: MyTextQuickSand(
+                    //     text: controller.isSelectedPlanIndex == -1
+                    //         ? "Select Plan"
+                    //         : 'You have Selected ${controller.selectedPlanButton.value}',
+                    //     color: Colors.black,
+                    //     fontSize: width * 0.05,
+                    //     fontWeight: FontWeight.w600,
+                    //   ),
+                    // ),
                   ),
-                  SizedBox(height: width * 0.1),
+                  SizedBox(height: width * 0.025),
+                  ElevatedButton(
+                      onPressed: () {},
+                      child: MyTextQuickSand(
+                        text: 'Submit',
+                        color: Colors.black,
+                        fontSize: width * 0.05,
+                        fontWeight: FontWeight.w600,
+                      )),
+                  // ElevatedButton(
+                  //
+                  //   style: ElevatedButton.styleFrom(
+                  //
+                  //     backgroundColor: appColor,
+                  //     elevation: 0,
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(3), // Adjust the value according to your preference
+                  //     ),
+                  //
+                  //   ),
+                  //   onPressed: (){}, child: MyTextQuickSand(
+                  //   text: 'Submit',
+                  //   color: Colors.black,
+                  //   fontSize: width * 0.05,
+                  //   fontWeight: FontWeight.w600,
+                  // ),),
+                  // Container(
+                  //   padding: EdgeInsets.all(width * 0.015),
+                  //   decoration: BoxDecoration(color: appColor),
+                  //   child: MyTextQuickSand(
+                  //     text: 'Submit',
+                  //     color: Colors.black,
+                  //     fontSize: width * 0.05,
+                  //     fontWeight: FontWeight.w600,
+                  //   ),
+                  // ),
 
                   // SizedBox(
                   //   height: width * 0.02,

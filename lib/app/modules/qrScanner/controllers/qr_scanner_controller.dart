@@ -13,9 +13,13 @@ class QrScannerController extends GetxController {
   void onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      // Handle scanned data here
-      data.value = scanData.toString();
+      print('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb');
+
       print(scanData.code);
+      // Handle scanned data here
+      data.value = scanData.code.toString();
+      // print(data.value.toString());
+      print(data.value);
       // Vibrate device if data is available
       if (data.value.isNotEmpty) {
         Vibration.vibrate(duration: 200);
